@@ -8,7 +8,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import by.bsuir.vshu.productlistapp.R
-import by.bsuir.vshu.productlistapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

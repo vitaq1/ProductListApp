@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import by.bsuir.vshu.productlistapp.R
 
+
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(

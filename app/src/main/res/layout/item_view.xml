@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    >
+
+    <ImageView
+        android:id="@+id/itemListImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_user" />
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_toEndOf="@id/itemListImageView"
+        android:layout_marginStart="40dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/itemListTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name food"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/itemListRatingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemListTitleText"
+            android:text="4.21"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/itemListPriceText"
+        android:layout_marginEnd="20dp"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="25.00$"/>
+
+</RelativeLayout>

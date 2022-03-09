@@ -16,13 +16,14 @@ class HomeViewModel @Inject constructor(
     private val getItemsUseCase: GetItemsUseCase
 ) : ViewModel() {
 
-    private lateinit var itemListState: MutableLiveData<ItemListState>
+    private var itemListState: MutableLiveData<ItemListState>
 
     init {
-        getItems()
+        itemListState = MutableLiveData()
+        loadItems()
     }
 
-    private fun getItems(){
+    private fun loadItems(){
         getItemsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
@@ -39,5 +40,8 @@ class HomeViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
+    fun getItemListState(): MutableLiveData<ItemListState> = itemListState
+
 
 }

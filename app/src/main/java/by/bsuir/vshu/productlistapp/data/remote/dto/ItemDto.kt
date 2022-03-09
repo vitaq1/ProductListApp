@@ -9,7 +9,7 @@ data class ItemDto(
     val description: String,
     val rating: Rating,
     val image: String,
-    val price: Int,
+    val price: Double,
 )
 
 fun ItemDto.toItem(): Item {

@@ -1,11 +1,13 @@
 package by.bsuir.vshu.productlistapp.domain.repository
 
 import by.bsuir.vshu.productlistapp.data.remote.dto.ItemDto
+import by.bsuir.vshu.productlistapp.domain.model.Item
+import by.bsuir.vshu.productlistapp.util.Resource
+import kotlinx.coroutines.flow.Flow
 
 interface ItemRepository {
 
-    suspend fun getItems(): List<ItemDto>
+    fun getItems(): Flow<Resource<List<Item>>>
 
-    suspend fun getItemById(id: String): ItemDto
-
+    fun getItemById(id: Int): Flow<Resource<Item>>
 }

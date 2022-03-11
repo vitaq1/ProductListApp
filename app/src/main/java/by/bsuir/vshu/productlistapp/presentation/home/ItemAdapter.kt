@@ -1,6 +1,5 @@
 package by.bsuir.vshu.productlistapp.presentation.home
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import by.bsuir.vshu.productlistapp.R
-import by.bsuir.vshu.productlistapp.common.Category
+import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.domain.model.Item
 import com.bumptech.glide.Glide
 
@@ -43,15 +42,14 @@ class ItemAdapter(private val items: List<Item>) :
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        if (viewHolder.category.s == items[position].category) {
-            val currentItem: Item = items[position]
-            Glide.with(viewHolder.context)
-                .load(currentItem.image)
-                .into(viewHolder.itemImage);
-            viewHolder.itemTitle.text = currentItem.title
-            viewHolder.itemRating.text = currentItem.rating.rate.toString()
-            viewHolder.itemPrice.text = currentItem.price.toString()
-        }
+
+        val currentItem: Item = items[position]
+        Glide.with(viewHolder.context)
+            .load(currentItem.image)
+            .into(viewHolder.itemImage);
+        viewHolder.itemTitle.text = currentItem.title
+        viewHolder.itemRating.text = currentItem.rating.rate.toString()
+        viewHolder.itemPrice.text = currentItem.price.toString()
     }
 
     override fun getItemCount() = items.size

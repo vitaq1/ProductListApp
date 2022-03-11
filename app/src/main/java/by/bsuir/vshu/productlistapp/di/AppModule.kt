@@ -1,6 +1,10 @@
 package by.bsuir.vshu.productlistapp.di
 
-import by.bsuir.vshu.productlistapp.common.Constants
+import android.app.Application
+import androidx.room.Room
+import by.bsuir.vshu.productlistapp.data.local.ItemDatabase
+import by.bsuir.vshu.productlistapp.data.local.dao.ItemDao
+import by.bsuir.vshu.productlistapp.util.Constants
 import by.bsuir.vshu.productlistapp.data.remote.FakeStoreAPI
 import by.bsuir.vshu.productlistapp.data.repository.ItemRepositoryImpl
 import by.bsuir.vshu.productlistapp.domain.repository.ItemRepository
@@ -28,7 +32,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideItemRepository(api: FakeStoreAPI): ItemRepository {
-        return ItemRepositoryImpl(api)
+    fun provideItemRepository(api: FakeStoreAPI, db: ItemDatabase): ItemRepository {
+        return ItemRepositoryImpl(api, db.dao)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideItemDatabase(app: Application): ItemDatabase {
+        return Room.databaseBuilder(
+            app, ItemDatabase::class.java, "item_db"
+        ).build()
     }
 }

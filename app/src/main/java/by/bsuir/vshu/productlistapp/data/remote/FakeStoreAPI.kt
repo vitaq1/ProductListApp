@@ -10,5 +10,6 @@ interface FakeStoreAPI {
     suspend fun getItems(): List<ItemDto>
 
     @GET("/products/{itemId}")
-    suspend fun getItemById(@Path("itemId") itemId: String): ItemDto
+    suspend fun getItemById(@Path("itemId") itemId: Int): ItemDto
+
 }

@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         tabLayout?.addTab(tabWomen!!)
         tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab?.contentDescription == "Men's") {
+                if (tab?.contentDescription!!.contains("Men's")) {
                     model.itemListState.value?.category = Category.MEN
                 } else {
                     model.itemListState.value?.category = Category.WOMEN

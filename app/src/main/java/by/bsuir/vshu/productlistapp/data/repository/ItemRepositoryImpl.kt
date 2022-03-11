@@ -24,11 +24,11 @@ import javax.inject.Inject
 
         val items = dao.getItems().map { it.toItem() }
         emit(Resource.Loading(data = items))
-
         try {
             val remoteItems = api.getItems()
             dao.deleteItems()
             dao.insertItems(remoteItems.map { it.toItemEntity() })
+            println("loaded from api")
         } catch (e: HttpException) {
             emit(
                 Resource.Error(

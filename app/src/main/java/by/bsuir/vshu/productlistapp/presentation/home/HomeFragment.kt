@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
+
             }
         })
 

@@ -1,4 +1,4 @@
-package by.bsuir.vshu.productlistapp.presentation.home
+package by.bsuir.vshu.productlistapp.presentation
 
 import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.domain.model.Item

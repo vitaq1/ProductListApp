@@ -1,11 +1,13 @@
-package by.bsuir.vshu.productlistapp.presentation.home
+package by.bsuir.vshu.productlistapp.presentation
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.util.Resource
-import by.bsuir.vshu.productlistapp.domain.model.Item
 import by.bsuir.vshu.productlistapp.domain.use_case.get_items.GetItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -13,7 +15,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class SharedViewModel @Inject constructor(
     private val getItemsUseCase: GetItemsUseCase
 ) : ViewModel() {
 
@@ -51,6 +53,19 @@ class HomeViewModel @Inject constructor(
 
         if (category == Category.SHOES) return mCount
         return wCount
+    }
+
+    fun isInternetConnected(context: Context): Boolean {
+
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+        return when {
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            else -> false
+        }
     }
 
 }

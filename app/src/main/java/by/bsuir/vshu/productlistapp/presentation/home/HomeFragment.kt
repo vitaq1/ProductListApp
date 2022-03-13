@@ -2,16 +2,22 @@ package by.bsuir.vshu.productlistapp.presentation.home
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.bsuir.vshu.productlistapp.R
+import by.bsuir.vshu.productlistapp.presentation.SharedViewModel
+import by.bsuir.vshu.productlistapp.presentation.forceRefresh
 import by.bsuir.vshu.productlistapp.util.Category
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val model by viewModels<HomeViewModel>()
+    private val model by activityViewModels<SharedViewModel>()
 
     private var tabLayout: TabLayout? = null
     private var tabShoes: TabLayout.Tab? = null
@@ -72,13 +78,30 @@ class HomeFragment : Fragment() {
         model.itemListState.observe(viewLifecycleOwner, Observer {
             println("Tab changed")
             recyclerView?.adapter =
-                ItemAdapter(it.items.filter { item -> item.category == it.category.s})
+                ItemAdapter(it.items.filter { item -> item.category == it.category.s })
             val gothicFont: Typeface = resources.getFont(R.font.gothic)
             tabShoes!!.text = "Shoes (${model.getItemCountByCategory(Category.SHOES)})"
-            tabAccessories!!.text = "Accessories (${model.getItemCountByCategory(Category.ACCESSORIES)})"
+            tabAccessories!!.text =
+                "Accessories (${model.getItemCountByCategory(Category.ACCESSORIES)})"
             tabLayout!!.setFont(gothicFont)
         })
 
+        checkInternetConnection()
+
+
+    }
+
+    private fun checkInternetConnection() {
+        if (!model.isInternetConnected(requireContext())) {
+            val toast =
+                Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            val toastContainer = toast.view as LinearLayout
+            val catImage = ImageView(requireContext())
+            catImage.setImageResource(R.drawable.ic_error_connection)
+            toastContainer.addView(catImage, 0)
+            toast.show()
+        }
     }
 
 

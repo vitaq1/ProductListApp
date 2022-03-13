@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var title: TextView
+    //private lateinit var title: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,17 +29,17 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        title = findViewById(R.id.title)
+        /*title = findViewById(R.id.title)
         title.background = createRectSelector(
             Color.WHITE,
             floatArrayOf(20f, 20f, 20f, 20f), fillAfterRipple = true
         )
-        title.isClickable = true
+        title.isClickable = true*/
 
         navView.setupWithNavController(navController)
     }
 
-    fun createRectSelector(
+    /*fun createRectSelector(
         color: Int,
         radii: FloatArray? = null,
         fillAfterRipple: Boolean = false
@@ -67,5 +67,5 @@ class MainActivity : AppCompatActivity() {
         val rippleDrawable = ShapeDrawable(RoundRectShape(radiiArray, null, null))
 
         return RippleDrawable(colorStateList, defDrawable, rippleDrawable)
-    }
+    }*/
 }

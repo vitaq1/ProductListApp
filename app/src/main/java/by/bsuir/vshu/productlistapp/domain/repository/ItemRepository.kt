@@ -9,5 +9,5 @@ interface ItemRepository {
 
     fun getItems(): Flow<Resource<List<Item>>>
 
-    fun getItemById(id: Int): Flow<Resource<Item>>
+    //fun getItemById(id: Int): Flow<Resource<Item>>
 }

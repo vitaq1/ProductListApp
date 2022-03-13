@@ -1,30 +1,30 @@
 package by.bsuir.vshu.productlistapp.data.local
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import by.bsuir.vshu.productlistapp.data.remote.dto.Rating
 import by.bsuir.vshu.productlistapp.domain.model.Item
 
 @Entity
 data class ItemEntity(
-    @PrimaryKey val id: Int,
-    val title: String,
+    @PrimaryKey val id: String,
+    val name: String,
+    val brand: String,
     val category: String,
-    val description: String,
-    @Embedded val rating: Rating,
+    val size: String,
     val image: String,
     val price: Double,
+    var comment: String = "",
 ) {
     fun toItem(): Item {
         return Item(
             id = id,
-            title = title,
+            name = name,
+            brand = brand,
             category = category,
-            description = description,
-            rating = rating,
+            size = size,
             image = image,
-            price = price
+            price = price,
+            comment = comment
         )
     }
 }

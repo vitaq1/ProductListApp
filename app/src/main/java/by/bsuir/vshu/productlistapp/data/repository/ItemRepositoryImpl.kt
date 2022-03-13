@@ -1,8 +1,7 @@
 package by.bsuir.vshu.productlistapp.data.repository
 
 import by.bsuir.vshu.productlistapp.data.local.dao.ItemDao
-import by.bsuir.vshu.productlistapp.data.remote.FakeStoreAPI
-import by.bsuir.vshu.productlistapp.data.remote.dto.ItemDto
+import by.bsuir.vshu.productlistapp.data.remote.StoreApi
 import by.bsuir.vshu.productlistapp.data.remote.dto.toItemEntity
 import by.bsuir.vshu.productlistapp.domain.model.Item
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +13,7 @@ import java.io.IOException
 import javax.inject.Inject
 
  class ItemRepositoryImpl @Inject constructor(
-    private val api: FakeStoreAPI,
+    private val api: StoreApi,
     private val dao: ItemDao
 ) : ItemRepository {
 
@@ -49,7 +48,7 @@ import javax.inject.Inject
         emit(Resource.Success(newItems))
     }
 
-     override fun getItemById(id: Int): Flow<Resource<Item>> = flow {
+     /*override fun getItemById(id: Int): Flow<Resource<Item>> = flow {
 
          emit(Resource.Loading<Item>())
 
@@ -77,5 +76,5 @@ import javax.inject.Inject
 
          val newItem = dao.getItemById(id).toItem()
          emit(Resource.Success(newItem))
-     }
+     }*/
  }

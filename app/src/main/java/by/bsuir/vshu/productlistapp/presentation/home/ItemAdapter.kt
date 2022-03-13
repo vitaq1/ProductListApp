@@ -19,16 +19,16 @@ class ItemAdapter(private val items: List<Item>) :
         val context: View
         val category: Category
         val itemImage: ImageView
-        val itemTitle: TextView
-        val itemRating: TextView
+        val itemBrand: TextView
+        val itemName: TextView
         val itemPrice: TextView
 
 
         init {
-            category = Category.MEN
-            itemTitle = view.findViewById(R.id.itemListTitleText)
+            category = Category.SHOES
+            itemBrand = view.findViewById(R.id.itemListBrandText)
             itemImage = view.findViewById(R.id.itemListImageView)
-            itemRating = view.findViewById(R.id.itemListRatingText)
+            itemName = view.findViewById(R.id.itemListNameText)
             itemPrice = view.findViewById(R.id.itemListPriceText)
             context = view
         }
@@ -47,8 +47,8 @@ class ItemAdapter(private val items: List<Item>) :
         Glide.with(viewHolder.context)
             .load(currentItem.image)
             .into(viewHolder.itemImage);
-        viewHolder.itemTitle.text = currentItem.title
-        viewHolder.itemRating.text = currentItem.rating.rate.toString()
+        viewHolder.itemBrand.text = currentItem.brand
+        viewHolder.itemName.text = currentItem.name
         viewHolder.itemPrice.text = currentItem.price.toString()
     }
 

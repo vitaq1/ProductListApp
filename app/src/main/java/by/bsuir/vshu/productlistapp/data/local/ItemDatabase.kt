@@ -7,7 +7,7 @@ import by.bsuir.vshu.productlistapp.data.local.dao.ItemDao
 
 @Database(
     entities = [ItemEntity::class],
-    version = 1
+    version = 2
 )
 abstract class ItemDatabase: RoomDatabase() {
 

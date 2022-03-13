@@ -1,13 +1,12 @@
 package by.bsuir.vshu.productlistapp.domain.model
 
-import by.bsuir.vshu.productlistapp.data.remote.dto.Rating
-
 data class Item(
-    val id: Int,
-    val title: String,
+    val id: String,
+    val name: String,
+    val brand: String,
     val category: String,
-    val description: String,
-    val rating: Rating,
+    val size: String,
     val image: String,
     val price: Double,
+    var comment: String,
 )

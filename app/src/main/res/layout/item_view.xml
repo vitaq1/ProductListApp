@@ -16,41 +16,62 @@
         android:src="@drawable/ic_user" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/rl"
+        android:layout_width="180dp"
         android:layout_height="80dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="40dp"
         android:layout_toEndOf="@id/itemListImageView"
-        android:layout_toStartOf="@id/itemListPriceText"
         android:gravity="center">
 
         <TextView
-            android:id="@+id/itemListTitleText"
+            android:id="@+id/itemListBrandText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="name food"
-            android:textColor="@color/black"
-            />
-
+            android:text="brand"
+            android:textColor="@color/black" />
 
 
         <TextView
-            android:id="@+id/itemListRatingText"
+            android:id="@+id/itemListNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemListTitleText"
-            android:text="4.21" />
+            android:layout_below="@id/itemListBrandText"
+            android:text="name" />
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/itemListPriceText"
-        android:layout_marginEnd="20dp"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_alignParentEnd="true"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
         android:layout_centerVertical="true"
-        android:text="25.00$"/>
+        android:layout_toEndOf="@id/rl"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/itemListPriceText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="25.00"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/itemListCurrencyText"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemListPriceText"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="$"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

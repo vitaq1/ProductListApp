@@ -23,8 +23,8 @@ class HomeFragment : Fragment() {
     private val model by viewModels<HomeViewModel>()
 
     private var tabLayout: TabLayout? = null
-    private var tabMen: TabLayout.Tab? = null
-    private var tabWomen: TabLayout.Tab? = null
+    private var tabShoes: TabLayout.Tab? = null
+    private var tabAccessories: TabLayout.Tab? = null
     private var recyclerView: RecyclerView? = null
 
 
@@ -42,16 +42,16 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         tabLayout = getView()?.findViewById(R.id.tabLayout)
-        tabMen = tabLayout!!.newTab().apply { text = "Men's" }
-        tabWomen = tabLayout!!.newTab().apply { text = "Women's" }
-        tabLayout?.addTab(tabMen!!)
-        tabLayout?.addTab(tabWomen!!)
+        tabShoes = tabLayout!!.newTab().apply { text = "Shoes" }
+        tabAccessories = tabLayout!!.newTab().apply { text = "Accessories" }
+        tabLayout?.addTab(tabShoes!!)
+        tabLayout?.addTab(tabAccessories!!)
         tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab?.contentDescription!!.contains("Men's")) {
-                    model.itemListState.value?.category = Category.MEN
+                if (tab?.contentDescription!!.contains("Shoes")) {
+                    model.itemListState.value?.category = Category.SHOES
                 } else {
-                    model.itemListState.value?.category = Category.WOMEN
+                    model.itemListState.value?.category = Category.ACCESSORIES
                 }
                 model.itemListState.forceRefresh()
                 println("Current category is: ${model.itemListState.value?.category}")
@@ -72,10 +72,10 @@ class HomeFragment : Fragment() {
         model.itemListState.observe(viewLifecycleOwner, Observer {
             println("Tab changed")
             recyclerView?.adapter =
-                ItemAdapter(it.items.filter { item -> item.category == it.category.s  || item.category == it.category.getComplementCategory() })
+                ItemAdapter(it.items.filter { item -> item.category == it.category.s})
             val gothicFont: Typeface = resources.getFont(R.font.gothic)
-            tabMen!!.text = "Men's (${model.getItemCountByCategory(Category.MEN)})"
-            tabWomen!!.text = "Women's (${model.getItemCountByCategory(Category.WOMEN)})"
+            tabShoes!!.text = "Shoes (${model.getItemCountByCategory(Category.SHOES)})"
+            tabAccessories!!.text = "Accessories (${model.getItemCountByCategory(Category.ACCESSORIES)})"
             tabLayout!!.setFont(gothicFont)
         })
 

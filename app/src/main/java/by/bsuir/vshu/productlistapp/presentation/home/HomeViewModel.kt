@@ -45,11 +45,11 @@ class HomeViewModel @Inject constructor(
         var mCount = 0
         var wCount = 0
         for (item in itemListState.value?.items!!){
-            if (item.category == Category.MEN.s || item.category == Category.MEN.getComplementCategory()) mCount++
+            if (item.category == Category.SHOES.s) mCount++
             else wCount++
         }
 
-        if (category == Category.MEN) return mCount
+        if (category == Category.SHOES) return mCount
         return wCount
     }
 

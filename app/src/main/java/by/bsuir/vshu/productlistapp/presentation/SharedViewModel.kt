@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.util.Resource
 import by.bsuir.vshu.productlistapp.domain.use_case.get_items.GetItemsUseCase
+import by.bsuir.vshu.productlistapp.util.Currency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -20,6 +21,8 @@ class SharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     var itemListState: MutableLiveData<ItemListState> = MutableLiveData()
+    var currentCurrency: MutableLiveData<Currency> = MutableLiveData()
+    var currentTheme: MutableLiveData<Currency> = MutableLiveData()
 
     init {
         loadItems()

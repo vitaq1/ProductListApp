@@ -1,6 +1,6 @@
 package by.bsuir.vshu.productlistapp.util
 
-enum class Currency(sign: String) {
+enum class Currency(public val sign: String) {
 
     USD("$"),
     EUR("€"),

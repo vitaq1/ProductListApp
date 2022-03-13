@@ -13,12 +13,20 @@
         >
 
         <ImageView
+            android:id="@+id/infoButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_info"
-            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_info" />
+
+        <Spinner
+            android:id="@+id/currencyPicker"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:spinnerMode="dropdown"
             />
 
         <androidx.appcompat.widget.SwitchCompat

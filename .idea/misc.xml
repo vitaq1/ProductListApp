@@ -9,9 +9,11 @@
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_info.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_night.xml" value="0.1255" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/image_border.xml" value="0.1855" />
+        <entry key="..\:/ProductListApp/app/src/main/res/drawable/ripple_button.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/switch_thumb.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/tab_indicator.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/tab_layout.xml" value="0.1855" />
+        <entry key="..\:/ProductListApp/app/src/main/res/layout/activity_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/ProductListApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/ProductListApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/ProductListApp/app/src/main/res/layout/fragment_explore.xml" value="0.11302083333333333" />

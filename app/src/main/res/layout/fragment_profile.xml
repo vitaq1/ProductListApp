@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.profile.ProfileFragment">
+    tools:context=".presentation.main.profile.ProfileFragment">
 
     <RelativeLayout
         android:id="@+id/settingsRelativeLayout"
@@ -19,7 +19,8 @@
             android:layout_marginStart="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_info" />
+            android:background="@drawable/ripple_info_button"
+             />
 
         <Spinner
             android:id="@+id/currencyPicker"
@@ -34,12 +35,11 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
             android:scaleX="1.5"
             android:scaleY="1.5"
             android:theme="@style/SwitchTheme"
-            android:thumb="@drawable/switch_thumb"
-            android:layout_marginEnd="15dp"
-            />
+            android:thumb="@drawable/switch_thumb" />
     </RelativeLayout>
 
     <ImageView

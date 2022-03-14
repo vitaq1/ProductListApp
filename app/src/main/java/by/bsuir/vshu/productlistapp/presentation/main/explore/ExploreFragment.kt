@@ -1,4 +1,4 @@
-package by.bsuir.vshu.productlistapp.presentation.explore
+package by.bsuir.vshu.productlistapp.presentation.main.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater

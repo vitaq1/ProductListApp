@@ -1,4 +1,4 @@
-package by.bsuir.vshu.productlistapp.presentation.home
+package by.bsuir.vshu.productlistapp.presentation.main.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.domain.model.Item
 import com.bumptech.glide.Glide
 
-class ItemAdapter(private val items: List<Item>) :
+class ItemAdapter(private val items: List<Item>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
 
@@ -31,12 +31,15 @@ class ItemAdapter(private val items: List<Item>) :
             itemName = view.findViewById(R.id.itemListNameText)
             itemPrice = view.findViewById(R.id.itemListPriceText)
             context = view
+
         }
+
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_view, viewGroup, false)
+
 
         return ViewHolder(view)
     }
@@ -50,7 +53,11 @@ class ItemAdapter(private val items: List<Item>) :
         viewHolder.itemBrand.text = currentItem.brand
         viewHolder.itemName.text = currentItem.name
         viewHolder.itemPrice.text = currentItem.price.toString()
+
+        viewHolder.context.setOnClickListener { listener.onItemClick(viewHolder.context, items[position].id) }
     }
+
+
 
     override fun getItemCount() = items.size
 

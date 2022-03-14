@@ -1,17 +1,16 @@
-package by.bsuir.vshu.productlistapp.presentation.profile
+package by.bsuir.vshu.productlistapp.presentation.main.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import by.bsuir.vshu.productlistapp.R
-import by.bsuir.vshu.productlistapp.presentation.SharedViewModel
+import by.bsuir.vshu.productlistapp.presentation.main.SharedViewModel
 import by.bsuir.vshu.productlistapp.util.Currency
 
 

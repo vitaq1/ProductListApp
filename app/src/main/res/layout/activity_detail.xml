@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.detail.DetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/clothing_store"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/action_bar"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_back" />
+
+    <ImageView
+        android:id="@+id/detailItemImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/backButton"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_user"
+        android:transitionName="itemTransitionImage"
+        />
+
+    <RelativeLayout
+        android:id="@+id/brandNameRl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/detailItemImage">
+
+        <TextView
+            android:id="@+id/itemDetailBrandText"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:text="brand"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:transitionName="itemTransitionBrand" />
+
+
+        <TextView
+            android:id="@+id/itemDetailNameText"
+            android:layout_width="250dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/itemDetailBrandText"
+            android:text="name"
+            android:transitionName="itemTransitionName" />
+
+        <ImageView
+            android:id="@+id/heartImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_heart"
+            android:stateListAnimator="@animator/heart_state_list_anim"
+            />
+
+
+    </RelativeLayout>
+</RelativeLayout>

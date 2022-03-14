@@ -1,4 +1,4 @@
-package by.bsuir.vshu.productlistapp.presentation
+package by.bsuir.vshu.productlistapp.presentation.main
 
 import android.content.res.ColorStateList
 import android.graphics.Color

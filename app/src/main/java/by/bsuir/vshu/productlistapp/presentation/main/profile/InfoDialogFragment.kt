@@ -1,4 +1,4 @@
-package by.bsuir.vshu.productlistapp.presentation.profile
+package by.bsuir.vshu.productlistapp.presentation.main.profile
 
 
 import android.app.Dialog

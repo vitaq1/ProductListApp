@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.home.HomeFragment"
+    tools:context=".presentation.main.home.HomeFragment"
     android:paddingTop="10dp">
 
     <com.google.android.material.tabs.TabLayout

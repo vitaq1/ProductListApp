@@ -4,8 +4,7 @@
     android:layout_height="90dp"
     android:clickable="true"
     android:focusable="true"
-    android:background="?attr/selectableItemBackground"
-    >
+    android:background="?attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/itemListImageView"
@@ -13,7 +12,8 @@
         android:layout_height="80dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="20dp"
-        android:src="@drawable/ic_user" />
+        android:src="@drawable/ic_user"
+        android:transitionName="itemTransitionImage" />
 
     <RelativeLayout
         android:id="@+id/rl"
@@ -29,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="brand"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:transitionName="itemTransitionBrand" />
 
 
         <TextView
@@ -37,7 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemListBrandText"
-            android:text="name" />
+            android:text="name"
+            android:transitionName="itemTransitionName"
+            />
 
     </RelativeLayout>
 
@@ -57,7 +60,9 @@
             android:layout_marginEnd="20dp"
             android:gravity="center"
             android:text="25.00"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:transitionName="itemTransitionPrice"
+            />
 
         <TextView
             android:id="@+id/itemListCurrencyText"
@@ -69,7 +74,9 @@
             android:layout_marginEnd="20dp"
             android:gravity="center"
             android:text="$"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:transitionName="itemTransitionCurrency"
+            />
 
     </RelativeLayout>
 

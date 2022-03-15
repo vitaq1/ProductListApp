@@ -48,33 +48,14 @@ import javax.inject.Inject
         emit(Resource.Success(newItems))
     }
 
-     /*override fun getItemById(id: Int): Flow<Resource<Item>> = flow {
-
-         emit(Resource.Loading<Item>())
-
-         val item = dao.getItemById(id).toItem()
-         emit(Resource.Loading(data = item))
+     override fun getItemById(id: String): Flow<Resource<Item>> = flow {
 
          try {
-             val remoteItem = api.getItemById(id)
-             dao.insertItem(remoteItem.toItemEntity())
-         } catch (e: HttpException) {
-             emit(
-                 Resource.Error(
-                     message = "Oops, something went wrong!",
-                     data = item
-                 )
-             )
-         } catch (e: IOException) {
-             emit(
-                 Resource.Error(
-                     message = "Couldn't reach server, check your internet connection.",
-                     data = item
-                 )
-             )
+             emit(Resource.Loading<Item>())
+             val item = dao.getItemById(id).toItem()
+             emit(Resource.Success<Item>(item))
+         } catch(e: IOException) {
+             emit(Resource.Error<Item>("Unexpected error"))
          }
-
-         val newItem = dao.getItemById(id).toItem()
-         emit(Resource.Success(newItem))
-     }*/
+     }
  }

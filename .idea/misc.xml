@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProductListApp/app/src/main/res/drawable/heart_selector.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_day.xml" value="0.1255" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_error_connection.xml" value="0.1255" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_explore.xml" value="0.1855" />
+        <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_heart.xml" value="0.1855" />
+        <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_heart_default.xml" value="0.124" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_info.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/ic_night.xml" value="0.1255" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/image_border.xml" value="0.1855" />
@@ -13,7 +16,7 @@
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/switch_thumb.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/tab_indicator.xml" value="0.1855" />
         <entry key="..\:/ProductListApp/app/src/main/res/drawable/tab_layout.xml" value="0.1855" />
-        <entry key="..\:/ProductListApp/app/src/main/res/layout/activity_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/ProductListApp/app/src/main/res/layout/activity_detail.xml" value="0.264" />
         <entry key="..\:/ProductListApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/ProductListApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/ProductListApp/app/src/main/res/layout/fragment_explore.xml" value="0.11302083333333333" />

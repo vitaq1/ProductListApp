@@ -46,8 +46,7 @@
         android:layout_below="@id/backButton"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_user"
-        android:transitionName="itemTransitionImage"
-        />
+        android:transitionName="itemTransitionImage" />
 
     <RelativeLayout
         android:id="@+id/brandNameRl"
@@ -59,6 +58,7 @@
             android:id="@+id/itemDetailBrandText"
             android:layout_width="250dp"
             android:layout_height="30dp"
+            android:layout_marginStart="20dp"
             android:text="brand"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -71,18 +71,19 @@
             android:layout_height="20dp"
             android:layout_below="@id/itemDetailBrandText"
             android:text="name"
+            android:layout_marginStart="20dp"
             android:transitionName="itemTransitionName" />
 
-        <ImageView
+        <CheckBox
             android:id="@+id/heartImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_heart"
-            android:stateListAnimator="@animator/heart_state_list_anim"
-            />
+            android:button="@drawable/ic_heart"
+            android:gravity="center"
+            android:stateListAnimator="@animator/heart_state_list_anim" />
 
 
     </RelativeLayout>

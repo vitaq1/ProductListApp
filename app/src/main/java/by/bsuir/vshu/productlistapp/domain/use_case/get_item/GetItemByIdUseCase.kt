@@ -7,11 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+
 class GetItemByIdUseCase  @Inject constructor(
     private val repository: ItemRepository
 ) {
-    /*operator fun invoke(id: Int): Flow<Resource<Item>> {
+
+    operator fun invoke(id: String): Flow<Resource<Item>> {
         return repository.getItemById(id)
-    }*/
+    }
+
 
 }

@@ -37,7 +37,25 @@
         android:layout_below="@id/action_bar"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/ic_back" />
+        android:background="@drawable/ic_back"
+        android:backgroundTint="@color/orange"
+        android:clickable="true"
+        android:focusable="true"
+        android:stateListAnimator="@animator/state_list_anim" />
+
+    <ImageView
+        android:id="@+id/goToWebButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/action_bar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/ic_go_to_web"
+        android:clickable="true"
+        android:focusable="true"
+        android:stateListAnimator="@animator/state_list_anim"
+        android:backgroundTint="@color/light_blue" />
 
     <ImageView
         android:id="@+id/detailItemImage"
@@ -52,13 +70,15 @@
         android:id="@+id/brandNameRl"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/detailItemImage">
+        android:layout_below="@id/detailItemImage"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        >
 
         <TextView
             android:id="@+id/itemDetailBrandText"
             android:layout_width="250dp"
             android:layout_height="30dp"
-            android:layout_marginStart="20dp"
             android:text="brand"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -71,7 +91,6 @@
             android:layout_height="20dp"
             android:layout_below="@id/itemDetailBrandText"
             android:text="name"
-            android:layout_marginStart="20dp"
             android:transitionName="itemTransitionName" />
 
         <CheckBox
@@ -80,11 +99,87 @@
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_marginEnd="20dp"
             android:button="@drawable/ic_heart"
             android:gravity="center"
-            android:stateListAnimator="@animator/heart_state_list_anim" />
+            android:stateListAnimator="@animator/state_list_anim" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/otherInfoRl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/brandNameRl"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+
+        <RelativeLayout
+            android:id="@+id/priceRl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/itemDetailPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/itemDetailCurrencyText"
+                android:text="25.00"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:transitionName="itemTransitionPrice" />
+
+            <TextView
+                android:id="@+id/itemDetailCurrencyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:transitionName="itemTransitionCurrency" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/itemDetailSizeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/priceRl"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="available sizes" />
+
+        <RelativeLayout
+            android:id="@+id/commentRl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/itemDetailSizeText"
+            >
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="You can add a comment" />
+
+            <ImageView
+                android:id="@+id/addCommentButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_check"
+                android:clickable="true"
+                android:focusable="true"
+                android:stateListAnimator="@animator/state_list_anim" />
+
+        </RelativeLayout>
+
 
 
     </RelativeLayout>
+
 </RelativeLayout>

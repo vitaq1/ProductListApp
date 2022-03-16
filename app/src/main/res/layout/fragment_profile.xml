@@ -17,10 +17,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:clickable="true"
-            android:focusable="true"
             android:background="@drawable/ripple_info_button"
-             />
+            android:clickable="true"
+            android:focusable="true" />
 
         <Spinner
             android:id="@+id/currencyPicker"

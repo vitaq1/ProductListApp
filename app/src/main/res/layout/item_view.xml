@@ -61,8 +61,7 @@
             android:gravity="center"
             android:text="25.00"
             android:textColor="@color/black"
-            android:transitionName="itemTransitionPrice"
-            />
+            android:transitionName="itemTransitionPrice" />
 
         <TextView
             android:id="@+id/itemListCurrencyText"

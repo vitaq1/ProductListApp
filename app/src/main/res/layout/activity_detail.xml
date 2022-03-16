@@ -94,7 +94,7 @@
             android:transitionName="itemTransitionName" />
 
         <CheckBox
-            android:id="@+id/heartImage"
+            android:id="@+id/favoriteCheck"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
@@ -124,9 +124,9 @@
                 android:id="@+id/itemDetailPriceText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/itemDetailCurrencyText"
                 android:text="25.00"
-                android:layout_marginStart="10dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:transitionName="itemTransitionPrice" />
@@ -156,8 +156,7 @@
             android:id="@+id/commentRl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/itemDetailSizeText"
-            >
+            android:layout_below="@id/itemDetailSizeText">
 
             <EditText
                 android:id="@+id/editText"
@@ -176,7 +175,16 @@
                 android:focusable="true"
                 android:stateListAnimator="@animator/state_list_anim" />
 
+            <com.google.android.material.chip.Chip
+                android:id="@+id/commentTextChip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:closeIconEnabled="true"
+                android:visibility="gone"
+                />
         </RelativeLayout>
+
+
 
 
 

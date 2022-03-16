@@ -23,4 +23,7 @@ interface ItemDao {
 
     @Query("SELECT * FROM itementity WHERE id=:id ")
     suspend fun getItemById(id: String): ItemEntity
+
+    @Update
+    suspend fun updateItem(item: ItemEntity)
 }

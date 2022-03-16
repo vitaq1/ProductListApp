@@ -8,11 +8,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import by.bsuir.vshu.productlistapp.domain.repository.ItemRepository
 import by.bsuir.vshu.productlistapp.util.Resource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
- class ItemRepositoryImpl @Inject constructor(
+class ItemRepositoryImpl @Inject constructor(
     private val api: StoreApi,
     private val dao: ItemDao
 ) : ItemRepository {
@@ -48,14 +51,20 @@ import javax.inject.Inject
         emit(Resource.Success(newItems))
     }
 
-     override fun getItemById(id: String): Flow<Resource<Item>> = flow {
+    override fun getItemById(id: String): Flow<Resource<Item>> = flow {
 
-         try {
-             emit(Resource.Loading<Item>())
-             val item = dao.getItemById(id).toItem()
-             emit(Resource.Success<Item>(item))
-         } catch(e: IOException) {
-             emit(Resource.Error<Item>("Unexpected error"))
-         }
-     }
- }
+        try {
+            emit(Resource.Loading<Item>())
+            val item = dao.getItemById(id).toItem()
+            emit(Resource.Success<Item>(item))
+        } catch (e: IOException) {
+            emit(Resource.Error<Item>("Unexpected error"))
+        }
+    }
+
+    override suspend fun updateItem(item: Item) {
+
+        dao.updateItem(item.toItemEntity())
+
+    }
+}

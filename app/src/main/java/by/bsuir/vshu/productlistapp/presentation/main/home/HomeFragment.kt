@@ -44,8 +44,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        return root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,13 +65,12 @@ class HomeFragment : Fragment() {
                 model.itemListState.forceRefresh()
                 println("Current category is: ${model.itemListState.value?.category}")
             }
-
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
-
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
+
         })
 
         recyclerView = view.findViewById(R.id.recyclerView)
@@ -129,11 +127,19 @@ class HomeFragment : Fragment() {
             Pair.create(view.findViewById(R.id.itemListBrandText), "itemTransitionBrand")
         val pName: Pair<View, String> =
             Pair.create(view.findViewById(R.id.itemListNameText) as View?, "itemTransitionName")
+        val pPrice: Pair<View, String> =
+            Pair.create(view.findViewById(R.id.itemListPriceText) as View?, "itemTransitionPrice")
+        val pCurrency: Pair<View, String> =
+            Pair.create(view.findViewById(R.id.itemListCurrencyText) as View?,
+                "itemTransitionCurrency"
+            )
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
             requireActivity(),
             pImage,
             pBrand,
-            pName
+            pName,
+            pPrice,
+            pCurrency
         )
         startActivity(intent, options.toBundle())
     }

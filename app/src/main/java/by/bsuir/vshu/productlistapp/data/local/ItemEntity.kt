@@ -14,6 +14,7 @@ data class ItemEntity(
     val image: String,
     val price: Double,
     var comment: String = "",
+    var isFavorite: Boolean = false
 ) {
     fun toItem(): Item {
         return Item(
@@ -24,7 +25,8 @@ data class ItemEntity(
             size = size,
             image = image,
             price = price,
-            comment = comment
+            comment = comment,
+            isFavorite = isFavorite
         )
     }
 }

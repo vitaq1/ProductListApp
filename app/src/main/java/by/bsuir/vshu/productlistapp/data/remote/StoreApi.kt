@@ -16,8 +16,5 @@ class StoreApi @Inject constructor(private val parser: WebParser) {
         return items
     }
 
-/*suspend fun getItemById( itemId: Int): ItemDto {
-
-}*/
 
 }

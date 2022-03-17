@@ -9,9 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import by.bsuir.vshu.productlistapp.R
 import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.domain.model.Item
+import by.bsuir.vshu.productlistapp.util.Currency
 import com.bumptech.glide.Glide
 
-class ItemAdapter(private val items: List<Item>, private val listener: OnItemClickListener) :
+class ItemAdapter(
+    private val items: List<Item>,
+    private val listener: OnItemClickListener,
+    private val currency: Currency
+) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
 
@@ -22,6 +27,7 @@ class ItemAdapter(private val items: List<Item>, private val listener: OnItemCli
         val itemBrand: TextView
         val itemName: TextView
         val itemPrice: TextView
+        val itemCurrency: TextView
 
 
         init {
@@ -30,6 +36,7 @@ class ItemAdapter(private val items: List<Item>, private val listener: OnItemCli
             itemImage = view.findViewById(R.id.itemListImageView)
             itemName = view.findViewById(R.id.itemListNameText)
             itemPrice = view.findViewById(R.id.itemListPriceText)
+            itemCurrency = view.findViewById(R.id.itemListCurrencyText)
             context = view
 
         }
@@ -52,11 +59,15 @@ class ItemAdapter(private val items: List<Item>, private val listener: OnItemCli
             .into(viewHolder.itemImage);
         viewHolder.itemBrand.text = currentItem.brand
         viewHolder.itemName.text = currentItem.name
-        viewHolder.itemPrice.text = currentItem.price.toString()
-
-        viewHolder.context.setOnClickListener { listener.onItemClick(viewHolder.context, items[position].id) }
+        viewHolder.itemPrice.text = String.format("%.2f", ((Currency.EUR.coeff / currency.coeff) * currentItem.price))
+        viewHolder.itemCurrency.text = currency.sign
+        viewHolder.context.setOnClickListener {
+            listener.onItemClick(
+                viewHolder.context,
+                items[position].id
+            )
+        }
     }
-
 
 
     override fun getItemCount() = items.size

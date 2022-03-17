@@ -26,13 +26,13 @@ class SharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     var itemListState: MutableLiveData<ItemListState> = MutableLiveData()
-    var currentCurrency: MutableLiveData<Currency> = MutableLiveData()
     var currentTheme: MutableLiveData<Currency> = MutableLiveData()
 
     init {
         loadItems()
         updateCurrencies()
     }
+
 
     private fun loadItems() {
         getItemsUseCase().onEach { result ->
@@ -64,32 +64,16 @@ class SharedViewModel @Inject constructor(
         return wCount
     }
 
-    fun isInternetConnected(context: Context): Boolean {
 
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork ?: return false
-        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-
-        return when {
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            else -> false
-        }
-    }
 
     private fun updateCurrencies(){
         viewModelScope.launch {
             val currencies = getCurrenciesUseCase()
             Currency.EUR.coeff = currencies[0]
             Currency.USD.coeff = currencies[1]
-            Currency.RUB.coeff = currencies[2] * 100
+            Currency.RUB.coeff = currencies[2] / 100
             Currency.GBP.coeff = currencies[3]
 
-
-            println(Currency.EUR.coeff)
-            println(Currency.USD.coeff)
-            println(Currency.RUB.coeff)
-            println(Currency.GBP.coeff)
         }
     }
 

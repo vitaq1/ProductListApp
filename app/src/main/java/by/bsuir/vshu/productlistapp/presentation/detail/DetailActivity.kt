@@ -12,6 +12,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import by.bsuir.vshu.productlistapp.R
+import by.bsuir.vshu.productlistapp.presentation.main.forceRefresh
+import by.bsuir.vshu.productlistapp.util.Currency
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
 
         initViews()
         model.loadItemById(intent.extras!!.getString("itemId", ""))
-
+        model.currency.value = Currency.valueOf(intent.extras!!.getString("currency", "EUR"))
         setObserversToData()
 
         backButton.apply { setOnClickListener { super.onBackPressed() } }
@@ -85,25 +87,35 @@ class DetailActivity : AppCompatActivity() {
         commentText = findViewById(R.id.commentTextChip)
     }
 
-    private fun setObserversToData(){
-        model.item.observe(this, Observer {
+    private fun setObserversToData() {
+
+
+        model.item.observe(this, Observer { item ->
+
             Glide.with(this)
-                .load(model.item.value?.image)
+                .load(item?.image)
                 .into(detailImage)
-            detailBrand.text = model.item.value?.brand
-            detailName.text = model.item.value?.name
-            detailSize.text = model.item.value?.size
-            detailPrice.text = model.item.value?.price.toString()
-            //TODO add currency swaps
-            if (model.item.value?.comment != "") {
-                commentText.text = model.item.value?.comment
+            detailBrand.text = item?.brand
+            detailName.text = item?.name
+            detailSize.text = item?.size
+
+            if (item?.comment != "") {
+                commentText.text = item?.comment
                 addCommentEditText.visibility = View.GONE
                 addCommentButton.visibility = View.GONE
                 commentText.visibility = View.VISIBLE
             }
-            if (model.item.value?.isFavorite == true) favoriteCheckBox.isChecked = true
+            if (item?.isFavorite == true) favoriteCheckBox.isChecked = true
+
+            model.currency.observe(this, Observer { currency ->
+                detailPrice.text = String.format(
+                    "%.2f", ((Currency.EUR.coeff / currency.coeff) * item.price)
+                )
+                detailCurrency.text = currency.sign
+            })
 
         })
+
     }
 
     private fun openWebView() {

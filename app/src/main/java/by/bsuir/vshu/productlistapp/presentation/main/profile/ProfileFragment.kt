@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import by.bsuir.vshu.productlistapp.R
 import by.bsuir.vshu.productlistapp.presentation.main.SharedViewModel
 import by.bsuir.vshu.productlistapp.presentation.map.MapsActivity
+import by.bsuir.vshu.productlistapp.util.ConnectionChecker
 import by.bsuir.vshu.productlistapp.util.Currency
 
 
@@ -51,6 +52,9 @@ class ProfileFragment : Fragment() {
         val adapter: ArrayAdapter<*> =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, currencies)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        if (!ConnectionChecker.isInternetConnected(requireContext())){
+            currencyPicker.isEnabled = false
+        }
         currencyPicker.adapter = adapter
         currencyPicker.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -59,7 +63,7 @@ class ProfileFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                model.currentCurrency.value =
+                model.itemListState.value?.currency =
                     Currency.values().filter { it.sign == currencies[position].split(" ")[1] }[0]
             }
 
@@ -67,6 +71,7 @@ class ProfileFragment : Fragment() {
 
             }
         })
+
 
     }
 

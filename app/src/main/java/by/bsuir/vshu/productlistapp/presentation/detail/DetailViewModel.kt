@@ -8,6 +8,7 @@ import by.bsuir.vshu.productlistapp.domain.use_case.get_item.GetItemByIdUseCase
 import by.bsuir.vshu.productlistapp.domain.use_case.get_items.GetItemsUseCase
 import by.bsuir.vshu.productlistapp.domain.use_case.update_item.UpdateItemUseCase
 import by.bsuir.vshu.productlistapp.presentation.main.forceRefresh
+import by.bsuir.vshu.productlistapp.util.Currency
 import by.bsuir.vshu.productlistapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -22,6 +23,7 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     var item: MutableLiveData<Item> = MutableLiveData()
+    var currency: MutableLiveData<Currency> = MutableLiveData()
 
     init {
 

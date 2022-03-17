@@ -23,6 +23,7 @@ import by.bsuir.vshu.productlistapp.presentation.detail.DetailActivity
 import by.bsuir.vshu.productlistapp.presentation.main.SharedViewModel
 import by.bsuir.vshu.productlistapp.presentation.main.forceRefresh
 import by.bsuir.vshu.productlistapp.util.Category
+import by.bsuir.vshu.productlistapp.util.ConnectionChecker
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,8 +66,10 @@ class HomeFragment : Fragment() {
                 model.itemListState.forceRefresh()
                 println("Current category is: ${model.itemListState.value?.category}")
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
+
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
@@ -90,7 +93,7 @@ class HomeFragment : Fragment() {
                     it.items.filter { item -> item.category == it.category.s },
                     OnItemClickListener { view, id ->
                         openDetailActivity(view, id)
-                    }
+                    }, it.currency
 
                 )
             val gothicFont: Typeface = resources.getFont(R.font.gothic)
@@ -106,7 +109,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkInternetConnection() {
-        if (!model.isInternetConnected(requireContext())) {
+        if (!ConnectionChecker.isInternetConnected(requireContext())) {
             val toast =
                 Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_LONG)
             toast.setGravity(Gravity.CENTER, 0, 0)
@@ -121,6 +124,7 @@ class HomeFragment : Fragment() {
     private fun openDetailActivity(view: View, itemId: String) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra("itemId", itemId)
+        intent.putExtra("currency", model.itemListState.value?.currency?.name)
         val pImage: Pair<View, String> =
             Pair.create(view.findViewById(R.id.itemListImageView) as View?, "itemTransitionImage")
         val pBrand: Pair<View, String> =
@@ -130,7 +134,8 @@ class HomeFragment : Fragment() {
         val pPrice: Pair<View, String> =
             Pair.create(view.findViewById(R.id.itemListPriceText) as View?, "itemTransitionPrice")
         val pCurrency: Pair<View, String> =
-            Pair.create(view.findViewById(R.id.itemListCurrencyText) as View?,
+            Pair.create(
+                view.findViewById(R.id.itemListCurrencyText) as View?,
                 "itemTransitionCurrency"
             )
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(

@@ -1,5 +1,6 @@
 package by.bsuir.vshu.productlistapp.data.repository
 
+import android.net.Network
 import by.bsuir.vshu.productlistapp.data.local.dao.ItemDao
 import by.bsuir.vshu.productlistapp.data.remote.StoreApi
 import by.bsuir.vshu.productlistapp.data.remote.dto.toItemEntity
@@ -69,6 +70,13 @@ class ItemRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCurrencies(): List<Double> {
-        return api.getCurrencies()
+        var currencyList: List<Double> = listOf(1.0, 1.0, 1.0, 1.0)
+        try {
+            currencyList = api.getCurrencies()
+        } catch (e: Exception) {
+            println("exception")
+        }
+
+        return currencyList
     }
 }

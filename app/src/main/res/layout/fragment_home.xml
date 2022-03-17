@@ -12,13 +12,13 @@
         android:layout_width="360dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        app:tabMode="fixed"
+        android:background="@drawable/tab_layout"
         app:tabGravity="fill"
-        app:tabIndicatorGravity="stretch"
-        app:tabSelectedTextColor="@color/white"
-        app:tabIndicatorAnimationMode="elastic"
         app:tabIndicator="@drawable/tab_indicator"
-        android:background="@drawable/tab_layout"/>
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorGravity="stretch"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

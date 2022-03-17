@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -24,6 +26,7 @@ class ProfileFragment : Fragment() {
     private lateinit var currencyPicker: Spinner
     private lateinit var infoButton: ImageView
     private lateinit var mapButton: ImageView
+    private lateinit var dayNightSwitch: SwitchCompat
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,14 +48,27 @@ class ProfileFragment : Fragment() {
                 Currency.GBP.name + " " + Currency.GBP.sign
             )
         currencyPicker = requireView().findViewById(R.id.currencyPicker)
-        infoButton = requireView().findViewById<ImageView?>(R.id.infoButton).apply { setOnClickListener { showInfoDialogFragment() } }
-        mapButton = requireView().findViewById<ImageView?>(R.id.mapButton).apply { setOnClickListener { showMap() } }
+        infoButton = requireView().findViewById<ImageView?>(R.id.infoButton)
+            .apply { setOnClickListener { showInfoDialogFragment() } }
+        mapButton = requireView().findViewById<ImageView?>(R.id.mapButton)
+            .apply { setOnClickListener { showMap() } }
+        dayNightSwitch = requireView().findViewById<SwitchCompat?>(R.id.themeSwitcher).apply {
+
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+
+        }
 
 
         val adapter: ArrayAdapter<*> =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, currencies)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        if (!ConnectionChecker.isInternetConnected(requireContext())){
+        if (!ConnectionChecker.isInternetConnected(requireContext())) {
             currencyPicker.isEnabled = false
         }
         currencyPicker.adapter = adapter
@@ -83,7 +99,7 @@ class ProfileFragment : Fragment() {
         infoFragment.show(transaction, "dialog")
     }
 
-    fun showMap(){
+    fun showMap() {
         val intent = Intent(context, MapsActivity::class.java)
         startActivity(intent)
     }

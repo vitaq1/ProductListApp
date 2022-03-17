@@ -11,5 +11,6 @@
     <color name="blue">#2196F3</color>
     <color name="light_blue">#00BCD4</color>
     <color name="orange">#FF5722</color>
+    <color name="tab_color">#0081cb</color>
 
 </resources>

@@ -2,6 +2,7 @@ package by.bsuir.vshu.productlistapp.data.remote.parser
 
 import by.bsuir.vshu.productlistapp.data.remote.dto.ItemDto
 import by.bsuir.vshu.productlistapp.util.Constants
+import by.bsuir.vshu.productlistapp.util.Currency
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import java.util.function.Consumer
@@ -42,6 +43,22 @@ class WebParser {
         return items
     }
 
+    suspend fun getCurrencies(): List<Double> {
+        val doc = Jsoup.connect(Constants.MY_FIN_URL)
+            .referrer("http://www.google.com")
+            .get()
+
+        val s: String = doc.text()
+            .substring(doc.text().indexOf("Фунт стерлингов"), doc.text().indexOf("Злотый"))
+        val splitted = s.split(" ").toTypedArray()
+        val GBP = splitted[3].toDouble()
+        val USD = splitted[9].toDouble()
+        val EUR = splitted[15].toDouble()
+        val RUB = splitted[22].toDouble()
+
+        return listOf(EUR,USD,RUB,GBP)
+    }
+
     private fun getId(element: Element): String {
         return element.select("a").attr("data-test-id", "ProductTile")
             .attr("href")
@@ -67,7 +84,7 @@ class WebParser {
 
     private fun getName(element: Element, brand: String): String {
         val temp = element.getElementsByAttributeValueContaining("data-testid", "productImage")
-            .attr("alt").toString().replace(brand, "").replaceFirst(" ","")
+            .attr("alt").toString().replace(brand, "").replaceFirst(" ", "")
         return temp.substring(0, temp.length - 7)
     }
 

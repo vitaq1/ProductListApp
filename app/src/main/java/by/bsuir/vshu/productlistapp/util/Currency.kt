@@ -1,10 +1,10 @@
 package by.bsuir.vshu.productlistapp.util
 
-enum class Currency(public val sign: String) {
+enum class Currency(public val sign: String, var coeff: Double) {
 
-    USD("$"),
-    EUR("€"),
-    RUB("₽"),
-    GBP("£")
+    EUR("€",1.0),
+    USD("$",1.0),
+    RUB("₽",1.0),
+    GBP("£",1.0)
 
 }

@@ -11,5 +11,7 @@ interface ItemRepository {
 
     fun getItemById(id: String): Flow<Resource<Item>>
 
+    suspend fun getCurrencies(): List<Double>
+
     suspend fun updateItem(item: Item)
 }

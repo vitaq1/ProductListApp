@@ -38,8 +38,8 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val currencies: Array<String> =
             arrayOf(
-                Currency.USD.name + " " + Currency.USD.sign,
                 Currency.EUR.name + " " + Currency.EUR.sign,
+                Currency.USD.name + " " + Currency.USD.sign,
                 Currency.RUB.name + " " + Currency.RUB.sign,
                 Currency.GBP.name + " " + Currency.GBP.sign
             )

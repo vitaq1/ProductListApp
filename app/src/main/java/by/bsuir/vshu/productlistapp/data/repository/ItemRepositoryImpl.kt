@@ -67,4 +67,8 @@ class ItemRepositoryImpl @Inject constructor(
         dao.updateItem(item.toItemEntity())
 
     }
+
+    override suspend fun getCurrencies(): List<Double> {
+        return api.getCurrencies()
+    }
 }

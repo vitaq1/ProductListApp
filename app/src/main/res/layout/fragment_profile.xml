@@ -64,14 +64,26 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         />
+
     <TextView
         android:layout_width="250dp"
         android:layout_height="30dp"
         android:layout_below="@id/profileName"
-        android:text="somemail@gmail.com"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="somemail@gmail.com" />
+
+    <ImageView
+        android:id="@+id/mapButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:stateListAnimator="@animator/state_list_anim"
+        android:background="@drawable/ic_map"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/orange"
         />
 
 

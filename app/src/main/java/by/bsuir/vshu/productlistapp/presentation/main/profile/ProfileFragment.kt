@@ -1,5 +1,6 @@
 package by.bsuir.vshu.productlistapp.presentation.main.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import by.bsuir.vshu.productlistapp.R
 import by.bsuir.vshu.productlistapp.presentation.main.SharedViewModel
+import by.bsuir.vshu.productlistapp.presentation.map.MapsActivity
 import by.bsuir.vshu.productlistapp.util.Currency
 
 
@@ -20,6 +22,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var currencyPicker: Spinner
     private lateinit var infoButton: ImageView
+    private lateinit var mapButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +45,7 @@ class ProfileFragment : Fragment() {
             )
         currencyPicker = requireView().findViewById(R.id.currencyPicker)
         infoButton = requireView().findViewById<ImageView?>(R.id.infoButton).apply { setOnClickListener { showInfoDialogFragment() } }
+        mapButton = requireView().findViewById<ImageView?>(R.id.mapButton).apply { setOnClickListener { showMap() } }
 
 
         val adapter: ArrayAdapter<*> =
@@ -72,6 +76,11 @@ class ProfileFragment : Fragment() {
 
         val transaction: FragmentTransaction = manager.beginTransaction()
         infoFragment.show(transaction, "dialog")
+    }
+
+    fun showMap(){
+        val intent = Intent(context, MapsActivity::class.java)
+        startActivity(intent)
     }
 
 

@@ -4,4 +4,6 @@
     <string name="explore">Explore</string>
     <string name="home">Home</string>
     <string name="clothing_store">Clothing Store</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
 </resources>

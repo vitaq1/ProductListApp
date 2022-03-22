@@ -84,7 +84,6 @@ class HomeFragment : Fragment() {
 
 
         model.itemListState.observe(viewLifecycleOwner, Observer {
-            println("Tab changed")
 
             recyclerView.adapter =
                 ItemAdapter(

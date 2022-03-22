@@ -29,10 +29,11 @@ class SharedViewModel @Inject constructor(
 
 
     fun updateItems() {
+        val lastCurrency = itemListState.value?.currency?: Currency.EUR
         getItemsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    itemListState.value = ItemListState(items = result.data ?: emptyList())
+                    itemListState.value = ItemListState(items = result.data ?: emptyList(), currency = lastCurrency)
                 }
                 is Resource.Error -> {
                     itemListState.value = ItemListState(

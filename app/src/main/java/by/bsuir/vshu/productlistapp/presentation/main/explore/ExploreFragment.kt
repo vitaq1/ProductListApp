@@ -134,7 +134,7 @@ class ExploreFragment : Fragment() {
     private fun setObservers() {
 
         model.itemListState.observe(viewLifecycleOwner, Observer {
-            println("callback" + it.items)
+            println(it.currency)
             recyclerView.adapter =
                 ItemAdapter(
                     it.items,

@@ -79,14 +79,12 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-
         }
 
 
 
         model.itemListState.observe(viewLifecycleOwner, Observer {
             println("Tab changed")
-            var listener: OnItemClickListener
 
             recyclerView.adapter =
                 ItemAdapter(

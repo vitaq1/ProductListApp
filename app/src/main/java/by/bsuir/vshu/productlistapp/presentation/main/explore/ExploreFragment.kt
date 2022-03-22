@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.LinearLayout
+import android.widget.*
+import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
@@ -30,9 +30,14 @@ class ExploreFragment : Fragment() {
     private val model by activityViewModels<SharedViewModel>()
 
     private lateinit var optionsLinearLayout: LinearLayout
+    private lateinit var searchView: SearchView
     private lateinit var filterList: CheckBox
+    private lateinit var nameCheckBox: CheckBox
+    private lateinit var brandCheckBox: CheckBox
+    private lateinit var favoriteCheckBox: CheckBox
     private lateinit var priceSlider: Slider
     private lateinit var recyclerView: RecyclerView
+    private lateinit var searchButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +59,8 @@ class ExploreFragment : Fragment() {
     private fun initViews() {
         optionsLinearLayout = requireView().findViewById(R.id.moreFilterOptions)
 
+        searchView = requireView().findViewById(R.id.searchView)
+
         filterList = requireView().findViewById(R.id.filterList)
         filterList.apply {
             setOnClickListener {
@@ -63,26 +70,74 @@ class ExploreFragment : Fragment() {
             }
         }
 
+        nameCheckBox = requireView().findViewById(R.id.nameCheckBox)
+
+        brandCheckBox = requireView().findViewById(R.id.brandCheckBox)
+
+        favoriteCheckBox = requireView().findViewById(R.id.favoriteCheckBox)
+
+
         priceSlider = requireView().findViewById(R.id.priceSlider)
         priceSlider.apply {
             valueTo =
                 model.itemListState.value?.items?.maxWithOrNull(Comparator.comparingDouble { it.price })?.price!!.toFloat()
+            value = valueTo
         }
 
         recyclerView = requireView().findViewById(R.id.recyclerExploreView)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
         }
+
+        searchButton = requireView().findViewById(R.id.searchButton)
+        searchButton.apply {
+            setOnClickListener {
+                var nameFlag = true
+                var brandFlag = true
+                var favFlag = true
+                recyclerView.adapter =
+                    ItemAdapter(
+                        model.itemListState.value!!.items.filter { item ->
+                            nameFlag =
+                                if (nameCheckBox.isChecked) item.name.contains(
+                                    searchView.query,
+                                    true
+                                ) else true
+                            brandFlag =
+                                if (brandCheckBox.isChecked) item.brand.contains(
+                                    searchView.query,
+                                    true
+                                ) else true
+                            if (nameCheckBox.isChecked && brandCheckBox.isChecked) {
+                                nameFlag = item.name.contains(
+                                    searchView.query,
+                                    true
+                                ) || item.brand.contains(searchView.query, true)
+                                brandFlag = nameFlag
+                            }
+                            favFlag = if (favoriteCheckBox.isChecked) {
+                                item.isFavorite
+                            } else true
+
+                            nameFlag && brandFlag && favFlag && item.price <= priceSlider.value
+
+                        },
+                        OnItemClickListener { view, id ->
+                            openDetailActivity(view, id)
+                        }, model.itemListState.value!!.currency
+
+                    )
+            }
+        }
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
 
         model.itemListState.observe(viewLifecycleOwner, Observer {
-
-            var listener: OnItemClickListener
-
+            println("callback" + it.items)
             recyclerView.adapter =
-                ItemAdapter(it.items.filter { item -> item.category == it.category.s },
+                ItemAdapter(
+                    it.items,
                     OnItemClickListener { view, id ->
                         openDetailActivity(view, id)
                     }, it.currency
@@ -120,9 +175,16 @@ class ExploreFragment : Fragment() {
         startActivity(intent, options.toBundle())
     }
 
-    override fun onPause() {
+
+    override fun onResume() {
+        model.updateItems()
         filterList.isChecked = false
-        super.onPause()
+        brandCheckBox.isChecked = false
+        favoriteCheckBox.isChecked = false
+        searchView.setQuery("", false)
+        optionsLinearLayout.visibility = View.GONE
+
+        super.onResume()
     }
 
 }

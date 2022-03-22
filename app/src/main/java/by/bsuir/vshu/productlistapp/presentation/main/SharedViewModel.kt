@@ -1,9 +1,5 @@
 package by.bsuir.vshu.productlistapp.presentation.main
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import androidx.compose.ui.unit.Constraints
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +7,6 @@ import by.bsuir.vshu.productlistapp.domain.use_case.get_currencies.GetCurrencies
 import by.bsuir.vshu.productlistapp.util.Category
 import by.bsuir.vshu.productlistapp.util.Resource
 import by.bsuir.vshu.productlistapp.domain.use_case.get_items.GetItemsUseCase
-import by.bsuir.vshu.productlistapp.util.Constants
 import by.bsuir.vshu.productlistapp.util.Currency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -26,15 +21,14 @@ class SharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     var itemListState: MutableLiveData<ItemListState> = MutableLiveData()
-    var currentTheme: MutableLiveData<Currency> = MutableLiveData()
 
     init {
-        loadItems()
+        updateItems()
         updateCurrencies()
     }
 
 
-    private fun loadItems() {
+    fun updateItems() {
         getItemsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

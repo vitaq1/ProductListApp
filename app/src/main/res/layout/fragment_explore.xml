@@ -6,81 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".presentation.main.explore.ExploreFragment">
 
-<RelativeLayout
-    android:id="@+id/searchRL"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginHorizontal="15dp"
-    >
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <RelativeLayout
+        android:id="@+id/searchRL"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_toStartOf="@id/filterList"
-        android:inputType="text"
-        app:iconifiedByDefault="false"
-        app:queryHint="Type here" />
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp">
 
-    <CheckBox
-        android:id="@+id/filterList"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:button="@drawable/ic_filter"
-        android:gravity="center"
-        android:stateListAnimator="@animator/state_list_anim" />
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toStartOf="@id/filterList"
+            android:inputType="text"
+            app:iconifiedByDefault="false"
+            app:queryHint="Type here" />
+
+        <CheckBox
+            android:id="@+id/filterList"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/searchButton"
+            android:button="@drawable/ic_filter"
+            android:gravity="center"
+            android:stateListAnimator="@animator/state_list_anim" />
+
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_check"
+            android:clickable="true"
+            android:focusable="true"
+            android:stateListAnimator="@animator/state_list_anim" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/moreFilterOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@id/searchRL"
         android:layout_marginHorizontal="30dp"
-        android:visibility="gone"
+        android:orientation="vertical"
+        android:visibility="visible"
+
         >
+
         <CheckBox
-            android:id="@+id/itemNameRadioButton"
+            android:id="@+id/nameCheckBox"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Name"
-            android:layoutDirection="rtl"
             android:checked="true"
-            />
+            android:layoutDirection="rtl"
+            android:text="Name" />
+
         <CheckBox
-            android:id="@+id/itemBrandRadioButton"
+            android:id="@+id/brandCheckBox"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Brand"
-            android:layoutDirection="rtl"
             android:checked="false"
-            />
+            android:layoutDirection="rtl"
+            android:text="Brand" />
+
+        <CheckBox
+            android:id="@+id/favoriteCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:checked="false"
+            android:layoutDirection="rtl"
+            android:text="Favorite" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
             android:background="@color/gray" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Max Price"
-            android:textColor="@color/black"
             android:gravity="left|center"
-            />
+            android:text="Max Price"
+            android:textColor="@color/black" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/priceSlider"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:valueFrom="0"
-            />
+            android:valueFrom="0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -88,6 +111,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/moreFilterOptions"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:paddingBottom="75dp"
+        />
 
 </RelativeLayout>

@@ -66,6 +66,7 @@ class DetailActivity : AppCompatActivity() {
             setOnClickListener {
                 model.item.value?.isFavorite = favoriteCheckBox.isChecked
                 model.updateItem()
+                model.addResult("changed favorite state of the item[${model.item.value!!.id}]")
             }
         }
 
@@ -148,6 +149,8 @@ class DetailActivity : AppCompatActivity() {
             addCommentEditText.visibility = View.GONE
             addCommentButton.visibility = View.GONE
             commentText.visibility = View.VISIBLE
+
+            model.addResult("added comment[$text] to item[${model.item.value!!.id}]")
         }
 
     }

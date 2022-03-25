@@ -22,6 +22,7 @@ import by.bsuir.vshu.productlistapp.presentation.main.home.ItemAdapter
 import by.bsuir.vshu.productlistapp.presentation.main.home.OnItemClickListener
 import by.bsuir.vshu.productlistapp.presentation.main.home.setFont
 import by.bsuir.vshu.productlistapp.util.Category
+import by.bsuir.vshu.productlistapp.util.Currency
 import com.google.android.material.slider.Slider
 import com.google.android.material.tabs.TabLayout
 
@@ -80,9 +81,10 @@ class ExploreFragment : Fragment() {
         priceSlider = requireView().findViewById(R.id.priceSlider)
         priceSlider.apply {
             valueTo =
-                model.itemListState.value?.items?.maxWithOrNull(Comparator.comparingDouble { it.price })?.price!!.toFloat()
+                    model.itemListState.value?.items?.maxWithOrNull(Comparator.comparingDouble { it.price })?.price!!.toFloat()
             value = valueTo
         }
+
 
         recyclerView = requireView().findViewById(R.id.recyclerExploreView)
         recyclerView.apply {
@@ -134,7 +136,7 @@ class ExploreFragment : Fragment() {
     private fun setObservers() {
 
         model.itemListState.observe(viewLifecycleOwner, Observer {
-            println(it.currency)
+
             recyclerView.adapter =
                 ItemAdapter(
                     it.items,

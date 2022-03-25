@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import by.bsuir.vshu.productlistapp.domain.model.Item
 import by.bsuir.vshu.productlistapp.domain.use_case.get_item.GetItemByIdUseCase
 import by.bsuir.vshu.productlistapp.domain.use_case.get_items.GetItemsUseCase
+import by.bsuir.vshu.productlistapp.domain.use_case.insert_result.InsertResultUseCase
 import by.bsuir.vshu.productlistapp.domain.use_case.update_item.UpdateItemUseCase
 import by.bsuir.vshu.productlistapp.presentation.main.forceRefresh
 import by.bsuir.vshu.productlistapp.util.Currency
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val getItemByIdUseCase: GetItemByIdUseCase,
-    private val updateItemUseCase: UpdateItemUseCase
+    private val updateItemUseCase: UpdateItemUseCase,
+    private val insertResultUseCase: InsertResultUseCase
 ) : ViewModel() {
 
     var item: MutableLiveData<Item> = MutableLiveData()
@@ -46,9 +48,15 @@ class DetailViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun updateItem(){
+    fun updateItem() {
         viewModelScope.launch {
             updateItemUseCase(item.value!!)
+        }
+    }
+
+    fun addResult(description: String) {
+        viewModelScope.launch {
+            insertResultUseCase(description)
         }
     }
 

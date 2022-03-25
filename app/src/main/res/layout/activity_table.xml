@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.table.TableActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="0dp"
+            android:stretchColumns="0,1">
+
+            <TableRow android:background="@color/blue">
+
+                <TextView
+                    android:gravity="center"
+                    android:text="Date"
+                    android:textColor="@color/black"
+
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:text="Description"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

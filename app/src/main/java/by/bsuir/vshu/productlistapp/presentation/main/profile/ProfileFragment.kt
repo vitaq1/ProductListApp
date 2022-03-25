@@ -13,8 +13,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import by.bsuir.vshu.productlistapp.R
+import by.bsuir.vshu.productlistapp.presentation.detail.DetailActivity
 import by.bsuir.vshu.productlistapp.presentation.main.SharedViewModel
 import by.bsuir.vshu.productlistapp.presentation.map.MapsActivity
+import by.bsuir.vshu.productlistapp.presentation.table.TableActivity
 import by.bsuir.vshu.productlistapp.util.ConnectionChecker
 import by.bsuir.vshu.productlistapp.util.Currency
 
@@ -25,6 +27,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var currencyPicker: Spinner
     private lateinit var infoButton: ImageView
+    private lateinit var tableButton: ImageView
     private lateinit var mapButton: ImageView
     private lateinit var dayNightSwitch: SwitchCompat
 
@@ -48,10 +51,16 @@ class ProfileFragment : Fragment() {
                 Currency.GBP.name + " " + Currency.GBP.sign
             )
         currencyPicker = requireView().findViewById(R.id.currencyPicker)
+
         infoButton = requireView().findViewById<ImageView?>(R.id.infoButton)
             .apply { setOnClickListener { showInfoDialogFragment() } }
+
+        tableButton = requireView().findViewById<ImageView?>(R.id.tableButton)
+            .apply { setOnClickListener { openTableActivity() } }
+
         mapButton = requireView().findViewById<ImageView?>(R.id.mapButton)
             .apply { setOnClickListener { showMap() } }
+
         dayNightSwitch = requireView().findViewById<SwitchCompat?>(R.id.themeSwitcher).apply {
 
             setOnCheckedChangeListener { _, isChecked ->
@@ -91,7 +100,7 @@ class ProfileFragment : Fragment() {
 
     }
 
-    fun showInfoDialogFragment() {
+    private fun showInfoDialogFragment() {
         val infoFragment = InfoDialogFragment()
         val manager: FragmentManager = requireActivity().supportFragmentManager
 
@@ -99,7 +108,12 @@ class ProfileFragment : Fragment() {
         infoFragment.show(transaction, "dialog")
     }
 
-    fun showMap() {
+    private fun openTableActivity(){
+        val intent = Intent(context, TableActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun showMap() {
         val intent = Intent(context, MapsActivity::class.java)
         startActivity(intent)
     }

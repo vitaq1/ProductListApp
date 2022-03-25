@@ -5,6 +5,7 @@ import by.bsuir.vshu.productlistapp.data.local.dao.ItemDao
 import by.bsuir.vshu.productlistapp.data.remote.StoreApi
 import by.bsuir.vshu.productlistapp.data.remote.dto.toItemEntity
 import by.bsuir.vshu.productlistapp.domain.model.Item
+import by.bsuir.vshu.productlistapp.domain.model.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import by.bsuir.vshu.productlistapp.domain.repository.ItemRepository
@@ -29,8 +30,9 @@ class ItemRepositoryImpl @Inject constructor(
         emit(Resource.Loading(data = items))
         try {
             val remoteItems = api.getItems()
-            dao.deleteItems()
-            dao.insertItems(remoteItems.map { it.toItemEntity() })
+            /*dao.deleteItems()
+            dao.insertItems(remoteItems.map { it.toItemEntity() })*/
+            dao.insertOrUpdateItems(remoteItems.map { it.toItemEntity() })
             println("loaded from api")
         } catch (e: HttpException) {
             emit(
@@ -79,4 +81,19 @@ class ItemRepositoryImpl @Inject constructor(
 
         return currencyList
     }
+
+
+    override fun getResults(): Flow<Resource<List<Result>>> = flow{
+        emit(Resource.Loading())
+
+        val results = dao.getResults().map { it.toResult() }
+        emit(Resource.Loading(data = results))
+
+        emit(Resource.Success(results))
+    }
+
+    override suspend fun insertResult(result: Result) {
+        dao.insertResult(result.toResultEntity())
+    }
+
 }
